@@ -71,9 +71,20 @@ The Figure 4.shows that there are differences in activity patterns between weekd
 
 ```r
 #Loading the data in R
-setwd("C:/Users/hp Probook 4540s/Desktop/reproductible research")
+setwd("C:/Users/hp Probook 4540s/Desktop/reproductible research/RepData_PeerAssessment1")
 #Lecture des données
 mec=read.csv2("activity.csv", header=TRUE,sep=",")
+```
+
+```
+## Warning: cannot open file 'activity.csv': No such file or directory
+```
+
+```
+## Error: cannot open the connection
+```
+
+```r
 summary(mec)
 ```
 
@@ -174,6 +185,11 @@ for (i in 1:length(mecf$steps)){
 agrsumf=aggregate(mecf$steps,by=list(mec$date),FUN=sum,na.rm=TRUE)
 #Make imputed histogram
 hist(agrsumf$x, col="green",xlab="Total number of steps taken per day",main="Figure 3. Histogram of total number of steps taken per day") 
+```
+
+![plot of chunk unnamed-chunk-1](figure/unnamed-chunk-13.png) 
+
+```r
 #Calculate and report the imputed mean and median total number of steps taken per day
 mean(agrsumf$x)
 ```
@@ -211,15 +227,6 @@ median(agrsumf$x)
 #differences in activity patterns between weekdays and weekends
 #Converte date variable from char to date format
 mecf$date=as.Date(mecf$date)
-```
-
-```
-## Warning: unable to identify current timezone 'T':
-## please set environment variable 'TZ'
-## Warning: unknown timezone 'localtime'
-```
-
-```r
 mecf$week=weekdays(mecf$date)
 #Create a weekday variable
 mecf$weekd=NA
@@ -227,11 +234,6 @@ mecf$weekd[mecf$week=="samedi"|mecf$week=="dimanche"]="weekend"
 mecf$weekd[mecf$week!="samedi"& mecf$week!="dimanche"]="weekday"
 #Create a panel plot
 library(lattice)
-```
-
-![plot of chunk unnamed-chunk-1](figure/unnamed-chunk-13.png) 
-
-```r
 #Aggregating steps per day with mean function
 agrmean1=aggregate(mecf$steps,by=list(mecf$interval,mecf$weekd),FUN=mean,na.rm=TRUE)
 
