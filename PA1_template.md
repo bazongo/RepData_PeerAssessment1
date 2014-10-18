@@ -74,17 +74,6 @@ The Figure 4.shows that there are differences in activity patterns between weekd
 setwd("C:/Users/hp Probook 4540s/Desktop/reproductible research/RepData_PeerAssessment1")
 #Lecture des données
 mec=read.csv2("activity.csv", header=TRUE,sep=",")
-```
-
-```
-## Warning: cannot open file 'activity.csv': No such file or directory
-```
-
-```
-## Error: cannot open the connection
-```
-
-```r
 summary(mec)
 ```
 
